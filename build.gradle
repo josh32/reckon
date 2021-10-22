@@ -3,14 +3,6 @@ plugins {
   id 'org.ajoberstar.reckon'
 }
 
-repositories {
-  mavenCentral()
-  maven {
-    name = 'ajoberstar-backup'
-    url = 'https://ajoberstar.org/bintray-backup/'
-  }
-}
-
 apply from: 'gradle/spotless.gradle'
 apply from: 'gradle/locking.gradle'
 apply from: 'gradle/bintray.gradle'
@@ -26,9 +18,13 @@ allprojects {
   plugins.withId('java-library') {
     sourceCompatibility = 8
 
-    repositories {
-      jcenter()
-    }
+repositories {
+  mavenCentral()
+  maven {
+    name = 'ajoberstar-backup'
+    url = 'https://ajoberstar.org/bintray-backup/'
+  }
+}
 
     java {
       withSourcesJar()
