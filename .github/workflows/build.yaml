@@ -38,6 +38,6 @@ jobs:
       - name: "Gradle check"
         run: "./gradlew check --continue"
       - name: "Snyk scan"
-        run: snyk test --all-sub-projects
+        run: snyk monitor --all-sub-projects
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
