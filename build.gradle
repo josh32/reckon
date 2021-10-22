@@ -12,10 +12,6 @@ reckon {
   stageFromProp('alpha', 'beta', 'rc', 'final')
 }
 
-dependencies {
-  implementation 'org.webjars:jquery:2.2.4'
-}
-
 allprojects {
   group = 'org.ajoberstar.reckon'
 
