@@ -1,3 +1,8 @@
+plugins {
+  id 'org.ajoberstar.grgit'
+  id 'org.ajoberstar.reckon'
+}
+
 repositories {
   mavenCentral()
 }
@@ -5,11 +10,6 @@ repositories {
 maven {
   name = 'ajoberstar-backup'
   url = 'https://ajoberstar.org/bintray-backup/'
-}
-
-plugins {
-  id 'org.ajoberstar.grgit'
-  id 'org.ajoberstar.reckon'
 }
 
 apply from: 'gradle/spotless.gradle'
