@@ -12,6 +12,7 @@ jobs:
         java: [8, 11, 15]
       fail-fast: false
     steps:
+      - uses: snyk/actions/setup@master
       - name: "Checkout repo"
         uses: "actions/checkout@v2"
         with:
@@ -36,3 +37,15 @@ jobs:
           key: "gradle-caches-${{ runner.os }}-${{ hashFiles('**/gradle/dependency-locks/*.lockfile') }}"
       - name: "Gradle check"
         run: "./gradlew check --continue"
+      - name: "Snyk library issue test"
+        run: snyk test --all-sub-projects --reachable || true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: "Snyk library issues to snyk.io"
+        run: snyk monitor --all-sub-projects --reachable
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: "Snyk code scan test"
+        run: snyk code test || true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
