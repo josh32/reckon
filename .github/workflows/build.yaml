@@ -38,7 +38,7 @@ jobs:
       - name: "Gradle check"
         run: "./gradlew check --continue"
       - name: "Snyk library issue test" 
-        run: snyk test --all-sub-projects --reachable || true
+        run: snyk test --all-projects --reachable -d || true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: "Snyk library issues to snyk.io"
